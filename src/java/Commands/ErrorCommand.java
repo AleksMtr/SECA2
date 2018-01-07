@@ -4,10 +4,18 @@
  * and open the template in the editor.
  */
 package Commands;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-public interface Command {
-    public String execute(HttpServletRequest request, HttpServletResponse response);
+/**
+ *
+ * @author allen
+ */
+public class ErrorCommand implements Command {
+    
+    public String execute(HttpServletRequest request, HttpServletResponse response)
+    {
+        //if an error occurs, it brings the user to the homepage, "index.html"...
+        return "/index.html";
+    }
+    
 }

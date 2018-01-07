@@ -8,34 +8,31 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-/**
- *
- * @author allen
- */
-public class Dao {
+
+public class Dao 
+{
+    private String databaseName;
+    
+    public Dao(String databaseName)
+    {
+        this.databaseName = databaseName;
+    }
     
     public Connection getConnection()
     {
-
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/burgerdb";
+        String url = "jdbc:mysql://localhost:3306/" + databaseName;
         String username = "root";
         String password = "";
         Connection con = null;
-        try 
-        {
+        try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, username, password);
-        } 
-        catch (ClassNotFoundException ex1) 
-        {
+        } catch (ClassNotFoundException ex1) {
             System.out.println("Failed to find driver class " + ex1.getMessage());
             System.exit(1);
-        } 
-        catch (SQLException ex2) 
-        {
+        } catch (SQLException ex2) {
             System.out.println("Connection failed " + ex2.getMessage());
-            System.exit(2);
         }
         return con;
     }
@@ -52,4 +49,5 @@ public class Dao {
             System.exit(1);
         }
     }
+
 }
